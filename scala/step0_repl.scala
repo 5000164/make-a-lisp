@@ -16,12 +16,12 @@ object step0_repl {
   }
 
   def main(args: Array[String]) {
-    var line:String = null
-    while ({line = readLine("user> "); line != null}) {
+    var line: String = null
+    while ( {line = readLine("user> "); line != null}) {
       try {
         println(REP(line))
       } catch {
-        case e : Exception => {
+        case e: Exception => {
           println("Error: " + e.getMessage)
           println("    " + e.getStackTrace.mkString("\n    "))
         }
@@ -29,5 +29,3 @@ object step0_repl {
     }
   }
 }
-
-// vim: ts=2:sw=2
