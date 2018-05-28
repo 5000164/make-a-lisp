@@ -1,4 +1,4 @@
-object step0_repl {
+object Step0Repl {
   def READ(str: String): String = {
     str
   }
