@@ -1,2 +1,4 @@
 Xlint
 repl
+scalatest
+scalactic
