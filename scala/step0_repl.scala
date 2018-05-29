@@ -1,4 +1,4 @@
-object Step0Repl {
+object step0_repl {
   def READ(str: String): String = {
     str
   }
@@ -16,12 +16,12 @@ object Step0Repl {
   }
 
   def main(args: Array[String]) {
-    var line: String = null
-    while ( {line = scala.io.StdIn.readLine("user> "); line != null}) {
+    var line:String = null
+    while ({line = readLine("user> "); line != null}) {
       try {
         println(REP(line))
       } catch {
-        case e: Exception => {
+        case e : Exception => {
           println("Error: " + e.getMessage)
           println("    " + e.getStackTrace.mkString("\n    "))
         }
@@ -29,3 +29,5 @@ object Step0Repl {
     }
   }
 }
+
+// vim: ts=2:sw=2
