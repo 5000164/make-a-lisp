@@ -1,11 +1,18 @@
 object step0_repl extends App {
   Iterator.continually(scala.io.StdIn.readLine("user> ")).takeWhile(_ != null).foreach(str => println(rep(str)))
 
-  def rep(str: String): String = PRINT(EVAL(READ(str), env = ""))
+  def rep(str: String): String = str.read.eval(env = "").print
 
-  def READ(str: String): String = str
+  implicit class ReadWrapper(val str: String) {
+    def read: String = str
+  }
 
-  def EVAL(ast: String, env: String): String = ast
+  implicit class EvalWrapper(val ast: String) {
+    def eval(env: String): String = ast
+  }
 
-  def PRINT(exp: String): String = exp
+  implicit class PrintWrapper(val exp: String) {
+    def print: String = exp
+  }
+
 }
