@@ -11,5 +11,9 @@ class PrinterSpec extends FeatureSpec {
     scenario("特殊な 2 文字") {
       assert(Reader.tokenizer("~@") === Seq("~@"))
     }
+
+    scenario("特殊な 1 文字") {
+      assert(Reader.tokenizer("[]{}()'`~^@") === Seq("[", "]", "{", "}", "(", ")", "'", "`", "~", "^", "@"))
+    }
   }
 }
