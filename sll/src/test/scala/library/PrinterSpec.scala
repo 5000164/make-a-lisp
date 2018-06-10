@@ -15,5 +15,9 @@ class PrinterSpec extends FeatureSpec {
     scenario("特殊な 1 文字") {
       assert(Reader.tokenizer("[]{}()'`~^@") === Seq("[", "]", "{", "}", "(", ")", "'", "`", "~", "^", "@"))
     }
+
+    scenario("ダブルクォーテーションで括られた文字") {
+      assert(Reader.tokenizer( """"123"""") === Seq( """"123""""))
+    }
   }
 }
