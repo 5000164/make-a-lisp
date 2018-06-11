@@ -19,5 +19,13 @@ class PrinterSpec extends FeatureSpec {
     scenario("ダブルクォーテーションで括られた文字") {
       assert(Reader.tokenizer( """"123"""") === Seq( """"123""""))
     }
+
+    scenario("ダブルクォーテーションの途中でダブルクォーテーションがある場合はそこまで") {
+      assert(Reader.tokenizer( """""123"""") === Seq( """""""", "123"))
+    }
+
+    scenario("ダブルクォーテーションの途中のダブルクォーテーションはバックスラッシュでエスケープできる") {
+      assert(Reader.tokenizer( """"\"123"""") === Seq( """"\"123""""))
+    }
   }
 }
