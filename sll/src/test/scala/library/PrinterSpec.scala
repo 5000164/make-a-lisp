@@ -27,5 +27,9 @@ class PrinterSpec extends FeatureSpec {
     scenario("ダブルクォーテーションの途中のダブルクォーテーションはバックスラッシュでエスケープできる") {
       assert(Reader.tokenizer( """"\"123"""") === Seq( """"\"123""""))
     }
+
+    scenario("セミコロンを含んだ文字列") {
+      assert(Reader.tokenizer("1;23") === Seq("1"))
+    }
   }
 }
