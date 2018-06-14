@@ -31,5 +31,9 @@ class PrinterSpec extends FeatureSpec {
     scenario("セミコロンを含んだ文字列") {
       assert(Reader.tokenizer("1;23") === Seq("1"))
     }
+
+    scenario("特殊じゃない文字") {
+      assert(Reader.tokenizer("a b c 123 true false nil") === Seq("a", "b", "c", "123", "true", "false", "nil"))
+    }
   }
 }
