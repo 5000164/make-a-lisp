@@ -5,7 +5,7 @@ case class Reader(tokens: Seq[String]) {
   var position = 0
 
   def peek(): String = {
-    if (position >= data.length) return (null)
+    if (position >= data.length) return null
     data(position)
   }
 
@@ -35,16 +35,15 @@ object Reader {
 
   def readForm(reader: Reader): Any = {
     reader.peek() match {
-      case "'" => {reader.next; Types._list(Symbol("quote"), readForm(reader))}
-      case "`" => {reader.next; Types._list(Symbol("quasiquote"), readForm(reader))}
-      case "~" => {reader.next; Types._list(Symbol("unquote"), readForm(reader))}
-      case "~@" => {reader.next; Types._list(Symbol("splice-unquote"), readForm(reader))}
-      case "^" => {
-        reader.next;
-        val meta = readForm(reader);
+      case "'" => reader.next; Types._list(Symbol("quote"), readForm(reader))
+      case "`" => reader.next; Types._list(Symbol("quasiquote"), readForm(reader))
+      case "~" => reader.next; Types._list(Symbol("unquote"), readForm(reader))
+      case "~@" => reader.next; Types._list(Symbol("splice-unquote"), readForm(reader))
+      case "^" =>
+        reader.next
+        val meta = readForm(reader)
         Types._list(Symbol("with-meta"), readForm(reader), meta)
-      }
-      case "@" => {reader.next; Types._list(Symbol("deref"), readForm(reader))}
+      case "@" => reader.next; Types._list(Symbol("deref"), readForm(reader))
 
       case "(" => readList(reader)
       case ")" => throw new Exception("unexpected ')')")
@@ -74,7 +73,7 @@ object Reader {
     val re_flt = """^(-?[0-9][0-9.]*)$""".r
     val re_str = """^"(.*)"$""".r
     val re_key = """^:(.*)$""".r
-    return token match {
+    token match {
       case re_int(i) => i.toLong      // integer
       case re_flt(f) => f.toDouble    // float
       case re_str(s) => parseStr(s)  // string
