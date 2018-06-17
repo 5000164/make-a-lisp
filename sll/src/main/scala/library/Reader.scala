@@ -26,6 +26,12 @@ object Reader {
     }
   }
 
+  /**
+    * 入力された文字列を Lisp で使用する単位に区切る
+    *
+    * @param str 入力された文字列
+    * @return Lisp で使用する単位に区切られた文字列
+    */
   def tokenizer(str: String): Seq[String] = {
     val r = """[\s,]*(~@|[\[\]{}()'`~^@]|"(?:\\.|[^\\"])*"|;.*|[^\s\[\]{}('"`,;)]*)""".r
     r.findAllMatchIn(str).map {_.group(1)}
