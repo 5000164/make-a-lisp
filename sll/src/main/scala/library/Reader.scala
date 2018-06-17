@@ -4,7 +4,7 @@ case class Reader(tokens: Seq[String]) {
   var data: Seq[String] = tokens
   var position = 0
 
-  def peek(): String = {
+  def peek: String = {
     if (position >= data.length) return null
     data(position)
   }
@@ -34,24 +34,40 @@ object Reader {
   }
 
   def readForm(reader: Reader): Any = {
-    reader.peek() match {
-      case "'" => reader.next; Types._list(Symbol("quote"), readForm(reader))
-      case "`" => reader.next; Types._list(Symbol("quasiquote"), readForm(reader))
-      case "~" => reader.next; Types._list(Symbol("unquote"), readForm(reader))
-      case "~@" => reader.next; Types._list(Symbol("splice-unquote"), readForm(reader))
+    reader.peek match {
+      case "'" =>
+        reader.next
+        Types._list(Symbol("quote"), readForm(reader))
+      case "`" =>
+        reader.next
+        Types._list(Symbol("quasiquote"), readForm(reader))
+      case "~" =>
+        reader.next
+        Types._list(Symbol("unquote"), readForm(reader))
+      case "~@" =>
+        reader.next
+        Types._list(Symbol("splice-unquote"), readForm(reader))
       case "^" =>
         reader.next
         val meta = readForm(reader)
         Types._list(Symbol("with-meta"), readForm(reader), meta)
-      case "@" => reader.next; Types._list(Symbol("deref"), readForm(reader))
-
-      case "(" => readList(reader)
-      case ")" => throw new Exception("unexpected ')')")
-      case "[" => Types._vector(readList(reader, "[", "]").value: _*)
-      case "]" => throw new Exception("unexpected ']')")
-      case "{" => Types._hash_map(readList(reader, "{", "}").value: _*)
-      case "}" => throw new Exception("unexpected '}')")
-      case _ => readAtom(reader)
+      case "@" =>
+        reader.next
+        Types._list(Symbol("deref"), readForm(reader))
+      case "(" =>
+        readList(reader)
+      case ")" =>
+        throw new Exception("unexpected ')')")
+      case "[" =>
+        Types._vector(readList(reader, "[", "]").value: _*)
+      case "]" =>
+        throw new Exception("unexpected ']')")
+      case "{" =>
+        Types._hash_map(readList(reader, "{", "}").value: _*)
+      case "}" =>
+        throw new Exception("unexpected '}')")
+      case _ =>
+        readAtom(reader)
     }
   }
 
@@ -59,7 +75,7 @@ object Reader {
     var ast: MalList = Types._list()
     var token = rdr.next
     if (token != start) throw new Exception("expected '" + start + "', got EOF")
-    while ( {token = rdr.peek(); token != end}) {
+    while ( {token = rdr.peek; token != end}) {
       if (token == null) throw new Exception("expected '" + end + "', got EOF")
       ast = ast :+ readForm(rdr)
     }
