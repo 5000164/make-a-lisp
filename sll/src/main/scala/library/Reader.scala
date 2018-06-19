@@ -1,18 +1,17 @@
 package library
 
 case class Reader(tokens: Seq[String]) {
-  var data: Seq[String] = tokens
   var position = 0
 
   def peek: String = {
-    if (position >= data.length) return null
-    data(position)
+    if (position >= tokens.length) return null
+    tokens(position)
   }
 
   def next: String = {
-    if (position >= data.length) return null
+    if (position >= tokens.length) return null
     position = position + 1
-    data(position - 1)
+    tokens(position - 1)
   }
 }
 
