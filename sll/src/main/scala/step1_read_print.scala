@@ -1,5 +1,5 @@
 object step1_read_print extends App {
-  Iterator.continually(scala.io.StdIn.readLine("user> ")).takeWhile(_ != null).foreach(str => println(rep(str)))
+  Iterator.continually(scala.io.StdIn.readLine("user> ")).takeWhile(_ != "").foreach(str => println(rep(str)))
 
   def rep(str: String): String = read(str).eval(env = "").print
 
