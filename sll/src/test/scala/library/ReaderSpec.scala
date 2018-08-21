@@ -9,11 +9,28 @@ class ReaderSpec extends FeatureSpec {
       assert(reader.peek === "a")
     }
 
+    scenario("トークンを過ぎた後に peek で情報を取得する") {
+      val reader = Reader(Seq("a", "b", "c"))
+      assert(reader.next === "a")
+      assert(reader.next === "b")
+      assert(reader.next === "c")
+      assert(reader.peek === null)
+    }
+
     scenario("next でトークンの現在位置の情報を返した後に現在位置を進める") {
       val reader = Reader(Seq("a", "b", "c"))
       assert(reader.peek === "a")
       assert(reader.next === "a")
       assert(reader.peek === "b")
+    }
+
+    scenario("next でトークンを過ぎる") {
+      val reader = Reader(Seq("a", "b", "c"))
+      assert(reader.next === "a")
+      assert(reader.next === "b")
+      assert(reader.next === "c")
+      assert(reader.next === null)
+      assert(reader.next === null)
     }
   }
 
