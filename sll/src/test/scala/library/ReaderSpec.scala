@@ -5,15 +5,15 @@ import org.scalatest.FeatureSpec
 class ReaderSpec extends FeatureSpec {
   feature("トークンの情報を扱う") {
     scenario("peek でトークンの現在位置の情報を返す") {
-      val reader = Reader(Seq("1", "2", "3"))
-      assert(reader.peek === "1")
+      val reader = Reader(Seq("a", "b", "c"))
+      assert(reader.peek === "a")
     }
 
     scenario("next でトークンの現在位置の情報を返した後に現在位置を進める") {
-      val reader = Reader(Seq("1", "2", "3"))
-      assert(reader.peek === "1")
-      assert(reader.next === "1")
-      assert(reader.peek === "2")
+      val reader = Reader(Seq("a", "b", "c"))
+      assert(reader.peek === "a")
+      assert(reader.next === "a")
+      assert(reader.peek === "b")
     }
   }
 
