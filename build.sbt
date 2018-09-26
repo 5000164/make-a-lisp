@@ -9,8 +9,8 @@ lazy val assemblySettings = Seq(
 lazy val root = (project in file(".")).
   settings(assemblySettings: _*).
   settings(
-    name := "mal",
-    version := "0.1",
+    name := "make-a-lisp",
+    version := "0.1.0-SNAPSHOT",
     scalaVersion := "2.12.6",
     libraryDependencies ++= {
       Seq(
