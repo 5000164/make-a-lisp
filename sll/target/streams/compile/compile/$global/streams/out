@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/hiroshi/Development/mal/sll/src/main/scala/library/Types.scala:37:30: value seq overrides nothing[0m
+[0m[[0m[31merror[0m] [0m[0mclass MalVector(override val seq: Any*) extends MalList(seq: _*) {[0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

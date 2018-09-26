@@ -1,0 +1,1 @@
+scalac -bootclasspath /Users/hiroshi/.sbt/boot/scala-2.12.6/lib/scala-library.jar -classpath /Users/hiroshi/Development/mal/sll/target/scala-2.12/classes:/Users/hiroshi/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar:/Users/hiroshi/.sbt/boot/scala-2.12.6/lib/scala-reflect.jar /Users/hiroshi/Development/mal/sll/src/main/scala/step1_read_print.scala

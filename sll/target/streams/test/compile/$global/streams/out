@@ -1,0 +1,6 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/hiroshi/Development/mal/sll/src/test/scala/library/ReaderSpec.scala:12:13: missing argument list for method scenario in trait FeatureSpecLike[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `scenario _` or `scenario(_,_)(_)(_)` instead of `scenario`.[0m
+[0m[[0m[31merror[0m] [0m[0m    scenario("")[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
