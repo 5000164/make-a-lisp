@@ -11,7 +11,7 @@ lazy val root = (project in file(".")).
   settings(
     name := "make-a-lisp",
     version := "0.1.0-SNAPSHOT",
-    scalaVersion := "2.12.6",
+    scalaVersion := "2.12.8",
     libraryDependencies ++= {
       Seq(
         "org.scalactic" %% "scalactic" % "3.0.5",
