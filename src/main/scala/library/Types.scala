@@ -56,8 +56,7 @@ class MalVector(seq: Any*) extends MalList(seq: _*) {
 }
 
 class MalHashMap(seq: Any*) extends MalType {
-  var value: Map[String, Any] = seq.toList.grouped(2).map(
-    (kv: List[Any]) => (kv(0).asInstanceOf[String], kv(1))).toMap
+  var value: Map[String, Any] = seq.toList.grouped(2).map((kv: List[Any]) => (kv(0).asInstanceOf[String], kv(1))).toMap
   var meta: Any = null
 
   override def clone(): MalHashMap = {

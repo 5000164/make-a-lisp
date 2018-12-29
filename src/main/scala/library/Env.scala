@@ -2,9 +2,7 @@ package library
 
 import scala.collection.mutable
 
-case class Env(outer: Env = null,
-    binds: Iterator[Any] = null,
-    exprs: Iterator[Any] = null) {
+case class Env(outer: Env = null, binds: Iterator[Any] = null, exprs: Iterator[Any] = null) {
   val data: mutable.Map[Symbol, Any] = mutable.Map()
   if (binds != null && exprs != null) {
     binds.foreach(b => {

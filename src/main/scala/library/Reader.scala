@@ -33,8 +33,11 @@ object Reader {
     */
   def tokenizer(str: String): Seq[String] = {
     val r = """[\s,]*(~@|[\[\]{}()'`~^@]|"(?:\\.|[^\\"])*"|;.*|[^\s\[\]{}('"`,;)]*)""".r
-    r.findAllMatchIn(str).map {_.group(1)}
-      .filter { s => s != "" && s(0) != ';' }
+    r.findAllMatchIn(str)
+      .map { _.group(1) }
+      .filter { s =>
+        s != "" && s(0) != ';'
+      }
       .toSeq
   }
 
@@ -80,7 +83,7 @@ object Reader {
     var ast: MalList = Types._list()
     var token = rdr.next
     if (token != start) throw new Exception("expected '" + start + "', got EOF")
-    while ( {token = rdr.peek; token != end}) {
+    while ({ token = rdr.peek; token != end }) {
       if (token == null) throw new Exception("expected '" + end + "', got EOF")
       ast = ast :+ readForm(rdr)
     }
@@ -95,10 +98,10 @@ object Reader {
     val re_str = """^"(.*)"$""".r
     val re_key = """^:(.*)$""".r
     token match {
-      case re_int(i) => i.toLong      // integer
-      case re_flt(f) => f.toDouble    // float
-      case re_str(s) => parseStr(s)  // string
-      case re_key(k) => "\u029e" + k  // keyword
+      case re_int(i) => i.toLong // integer
+      case re_flt(f) => f.toDouble // float
+      case re_str(s) => parseStr(s) // string
+      case re_key(k) => "\u029e" + k // keyword
       case "nil" => null
       case "true" => true
       case "false" => false

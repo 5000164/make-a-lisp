@@ -12,7 +12,8 @@ object Printer {
           ":" + s.substring(1, s.length)
         } else if (_r) {
           //println("here1: " + s)
-          "\"" + s.replace("\\", "\\\\")
+          "\"" + s
+            .replace("\\", "\\\\")
             .replace("\"", "\\\"")
             .replace("\n", "\\n") + "\""
         } else {
