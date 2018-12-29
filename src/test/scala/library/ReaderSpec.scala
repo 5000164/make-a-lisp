@@ -67,4 +67,10 @@ class ReaderSpec extends FeatureSpec {
       assert(Reader.tokenizer("a b c 123 true false nil") === Seq("a", "b", "c", "123", "true", "false", "nil"))
     }
   }
+
+  feature("readForm") {
+    scenario("test") {
+      assert(Reader.readForm(new Reader(Seq("123"))) === 123)
+    }
+  }
 }
