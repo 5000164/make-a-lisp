@@ -72,5 +72,13 @@ class ReaderSpec extends FeatureSpec {
     scenario("Integer のトークンは Integer で解釈される") {
       assert(Reader.readForm(new Reader(Seq("123"))) === 123)
     }
+
+    scenario("Double のトークンは Double で解釈される") {
+      assert(Reader.readForm(new Reader(Seq("123.4"))) === 123.4)
+    }
+
+    scenario("ダブルクォーテーションで括られた文字列のトークンは文字列で解釈される") {
+      assert(Reader.readForm(new Reader(Seq(""""123""""))) === "123")
+    }
   }
 }
