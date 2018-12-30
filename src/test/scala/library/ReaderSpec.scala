@@ -69,7 +69,7 @@ class ReaderSpec extends FeatureSpec {
   }
 
   feature("readForm") {
-    scenario("test") {
+    scenario("Integer のトークンは Integer で解釈される") {
       assert(Reader.readForm(new Reader(Seq("123"))) === 123)
     }
   }
