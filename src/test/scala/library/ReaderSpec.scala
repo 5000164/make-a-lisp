@@ -80,5 +80,9 @@ class ReaderSpec extends FeatureSpec {
     scenario("ダブルクォーテーションで括られた文字列のトークンは文字列で解釈される") {
       assert(Reader.readForm(new Reader(Seq(""""123""""))) === "123")
     }
+
+    scenario("It is judged keywords that the first letter is :") {
+      assert(Reader.readForm(new Reader(Seq(":keyword"))) === "\u029ekeyword")
+    }
   }
 }
