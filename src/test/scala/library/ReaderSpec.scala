@@ -84,5 +84,17 @@ class ReaderSpec extends FeatureSpec {
     scenario("It is judged keywords that the first letter is :") {
       assert(Reader.readForm(new Reader(Seq(":keyword"))) === "\u029ekeyword")
     }
+
+    scenario("It is judged null that a word is nil") {
+      assert(Reader.readForm(new Reader(Seq("nil"))) === null)
+    }
+
+    scenario("It is judged true that a word is true") {
+      assert(Reader.readForm(new Reader(Seq("true"))) === true)
+    }
+
+    scenario("It is judged false that a word is false") {
+      assert(Reader.readForm(new Reader(Seq("false"))) === false)
+    }
   }
 }
