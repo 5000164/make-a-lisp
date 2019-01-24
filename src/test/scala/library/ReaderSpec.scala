@@ -96,5 +96,9 @@ class ReaderSpec extends FeatureSpec {
     scenario("It is judged false that a word is false") {
       assert(Reader.readForm(new Reader(Seq("false"))) === false)
     }
+
+    scenario("It is judged Symbol that to don't match other conditions") {
+      assert(Reader.readForm(new Reader(Seq("+"))) === Symbol("+"))
+    }
   }
 }
