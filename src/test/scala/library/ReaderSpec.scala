@@ -100,5 +100,9 @@ class ReaderSpec extends FeatureSpec {
     scenario("It is judged Symbol that to don't match other conditions") {
       assert(Reader.readForm(new Reader(Seq("+"))) === Symbol("+"))
     }
+
+    scenario("results has 2 items when a token has 2 items") {
+      assert(Reader.readForm(new Reader(Seq("123", "45"))) === 12345)
+    }
   }
 }
