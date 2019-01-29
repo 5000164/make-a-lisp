@@ -12,5 +12,4 @@ object step1_read_print extends App {
   implicit class PrintWrapper(val exp: Any) {
     def print: String = library.Printer._pr_str(exp, true)
   }
-
 }
