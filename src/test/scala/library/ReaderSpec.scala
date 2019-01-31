@@ -101,8 +101,9 @@ class ReaderSpec extends FeatureSpec {
       assert(Reader.readForm(new Reader(Seq("+"))) === Symbol("+"))
     }
 
-    scenario("results has 2 items when a token has 2 items") {
-      assert(Reader.readForm(new Reader(Seq("123", "45"))) === 12345)
+    scenario("get ast") {
+      val result = Reader.readForm(new Reader(Seq("(", "+", "123", "45", ")")))
+      println(result)
     }
   }
 }
