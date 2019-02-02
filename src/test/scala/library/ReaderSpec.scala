@@ -102,8 +102,7 @@ class ReaderSpec extends FeatureSpec {
     }
 
     scenario("get ast") {
-      val result = Reader.readForm(new Reader(Seq("(", "+", "123", "45", ")")))
-      println(result)
+      assert(Reader.readForm(new Reader(Seq("(", "+", "123", "45", ")"))) === MalList(Symbol("+"), 123L, 45L))
     }
   }
 }
