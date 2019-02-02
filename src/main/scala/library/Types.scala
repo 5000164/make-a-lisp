@@ -4,12 +4,12 @@ import scala.collection.{Map, mutable}
 
 class MalType
 
-class MalList(seq: Any*) extends MalType {
+case class MalList(seq: Any*) extends MalType {
   var value: List[Any] = seq.toList
   var meta: Any = null
 
   override def clone(): MalList = {
-    val new_ml = new MalList()
+    val new_ml = MalList()
     new_ml.value = value
     new_ml.meta = meta
     new_ml
@@ -17,13 +17,13 @@ class MalList(seq: Any*) extends MalType {
 
   def apply(idx: Int): Any = value(idx)
 
-  def map(f: Any => Any) = new MalList(value.map(f): _*)
+  def map(f: Any => Any) = MalList(value.map(f): _*)
 
-  def drop(cnt: Int) = new MalList(value.drop(cnt): _*)
+  def drop(cnt: Int) = MalList(value.drop(cnt): _*)
 
-  def :+(that: Any) = new MalList((value :+ that): _*)
+  def :+(that: Any) = MalList((value :+ that): _*)
 
-  def +:(that: Any) = new MalList((that +: value): _*)
+  def +:(that: Any) = MalList((that +: value): _*)
 
   override def toString() = {
     "(" + value.map(Printer._pr_str(_, true)).mkString(" ") + ")"
@@ -66,9 +66,9 @@ class MalHashMap(seq: Any*) extends MalType {
     new_hm
   }
 
-  def keys(): MalList = new MalList(value.keys.toSeq: _*)
+  def keys(): MalList = MalList(value.keys.toSeq: _*)
 
-  def vals(): MalList = new MalList(value.values.toSeq: _*)
+  def vals(): MalList = MalList(value.values.toSeq: _*)
 
   def apply(key: String): Any = value(key)
 

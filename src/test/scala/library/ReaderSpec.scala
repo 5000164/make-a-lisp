@@ -67,4 +67,42 @@ class ReaderSpec extends FeatureSpec {
       assert(Reader.tokenizer("a b c 123 true false nil") === Seq("a", "b", "c", "123", "true", "false", "nil"))
     }
   }
+
+  feature("readForm") {
+    scenario("Integer のトークンは Integer で解釈される") {
+      assert(Reader.readForm(new Reader(Seq("123"))) === 123)
+    }
+
+    scenario("Double のトークンは Double で解釈される") {
+      assert(Reader.readForm(new Reader(Seq("123.4"))) === 123.4)
+    }
+
+    scenario("ダブルクォーテーションで括られた文字列のトークンは文字列で解釈される") {
+      assert(Reader.readForm(new Reader(Seq(""""123""""))) === "123")
+    }
+
+    scenario("It is judged keywords that the first letter is :") {
+      assert(Reader.readForm(new Reader(Seq(":keyword"))) === "\u029ekeyword")
+    }
+
+    scenario("It is judged null that a word is nil") {
+      assert(Reader.readForm(new Reader(Seq("nil"))) === null)
+    }
+
+    scenario("It is judged true that a word is true") {
+      assert(Reader.readForm(new Reader(Seq("true"))) === true)
+    }
+
+    scenario("It is judged false that a word is false") {
+      assert(Reader.readForm(new Reader(Seq("false"))) === false)
+    }
+
+    scenario("It is judged Symbol that to don't match other conditions") {
+      assert(Reader.readForm(new Reader(Seq("+"))) === Symbol("+"))
+    }
+
+    scenario("get ast") {
+      assert(Reader.readForm(new Reader(Seq("(", "+", "123", "45", ")"))) === MalList(Symbol("+"), 123L, 45L))
+    }
+  }
 }
